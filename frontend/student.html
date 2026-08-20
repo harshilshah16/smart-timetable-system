@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Timetable View - STM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-container-lowest": "#ffffff",
+        "on-primary": "#ffffff",
+        "surface-bright": "#f7f9fb",
+        "on-tertiary-fixed-variant": "#004395",
+        "on-secondary-fixed": "#0d1c2f",
+        "on-tertiary-container": "#3980f4",
+        "error-container": "#ffdad6",
+        "inverse-primary": "#bec6e0",
+        "tertiary": "#000000",
+        "on-secondary-fixed-variant": "#3a485c",
+        "on-primary-fixed": "#131b2e",
+        "surface-container": "#eceef0",
+        "on-surface-variant": "#45464d",
+        "surface": "#f7f9fb",
+        "on-tertiary": "#ffffff",
+        "secondary-fixed": "#d5e3fd",
+        "on-surface": "#191c1e",
+        "on-primary-fixed-variant": "#3f465c",
+        "on-secondary-container": "#57657b",
+        "surface-container-highest": "#e0e3e5",
+        "outline-variant": "#c6c6cd",
+        "tertiary-container": "#001a42",
+        "secondary-fixed-dim": "#b9c7e0",
+        "surface-tint": "#565e74",
+        "outline": "#76777d",
+        "background": "#f7f9fb",
+        "surface-container-high": "#e6e8ea",
+        "tertiary-fixed": "#d8e2ff",
+        "primary-fixed": "#dae2fd",
+        "on-error": "#ffffff",
+        "secondary": "#515f74",
+        "on-primary-container": "#7c839b",
+        "surface-container-low": "#f2f4f6",
+        "on-background": "#191c1e",
+        "on-error-container": "#93000a",
+        "on-tertiary-fixed": "#001a42",
+        "error": "#ba1a1a",
+        "on-secondary": "#ffffff",
+        "inverse-on-surface": "#eff1f3",
+        "primary-container": "#131b2e",
+        "inverse-surface": "#2d3133",
+        "surface-variant": "#e0e3e5",
+        "tertiary-fixed-dim": "#adc6ff",
+        "primary": "#000000",
+        "primary-fixed-dim": "#bec6e0",
+        "surface-dim": "#d8dadc",
+        "secondary-container": "#d5e3fd"
+      },
+      borderRadius: {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      spacing: {
+        "unit": "4px",
+        "table-cell-padding": "12px 16px",
+        "margin-desktop": "32px",
+        "gutter": "24px",
+        "container-max": "1440px",
+        "margin-mobile": "16px"
+      },
+      fontFamily: {
+        "body-md": ["Inter"],
+        "body-sm": ["Inter"],
+        "headline-lg": ["Inter"],
+        "mono-sm": ["JetBrains Mono"],
+        "display": ["Inter"],
+        "headline-md": ["Inter"],
+        "label-md": ["Inter"],
+        "body-lg": ["Inter"]
+      },
+      fontSize: {
+        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+        "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+        "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "mono-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+        "display": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "600" }],
+        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }]
+      }
+    }
+  }
+}
+</script>
+<style>
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+.timetable-grid {
+  display: grid;
+  grid-template-columns: 60px repeat(5, 1fr);
+  grid-template-rows: auto repeat(10, minmax(60px, auto));
+  gap: 1px;
+  background-color: theme('colors.outline-variant');
+  border: 1px solid theme('colors.outline-variant');
+}
+.timetable-cell {
+  background-color: theme('colors.surface-container-lowest');
+  padding: theme('spacing.unit');
+}
+.timetable-header {
+  background-color: theme('colors.surface-container-lowest');
+  padding: theme('spacing.table-cell-padding');
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.time-col {
+  grid-column: 1;
+  background-color: theme('colors.surface-container-lowest');
+  padding-right: 8px;
+  text-align: right;
+}
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased h-full flex overflow-hidden">
+
+<!-- TopNavBar (Mobile) -->
+<header class="md:hidden bg-surface-container-lowest dark:bg-inverse-surface text-primary dark:text-inverse-primary font-body-md text-body-md w-full h-16 sticky top-0 border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile w-full z-40 fixed">
+  <div class="flex items-center gap-3">
+    <button class="p-2 cursor-pointer active:scale-95 transition-transform" id="mobile-menu-btn">
+      <span class="material-symbols-outlined" data-icon="menu">menu</span>
+    </button>
+    <span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed"> STM </span>
+  </div>
+  <div class="flex items-center gap-2">
+    <span class="material-symbols-outlined cursor-pointer active:scale-95 transition-transform" data-icon="notifications">notifications</span>
+    <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden ml-2 cursor-pointer active:scale-95 transition-transform flex items-center justify-center text-on-surface-variant">
+      <span class="material-symbols-outlined text-lg" data-icon="person">person</span>
+    </div>
+  </div>
+</header>
+
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col bg-surface-container-low dark:bg-surface-dim font-label-md text-label-md w-64 fixed left-0 top-0 h-screen border-r border-outline-variant py-unit overflow-y-auto z-30 flex-shrink-0" id="desktop-sidebar">
+  <div class="p-6 pb-8">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+        <span class="material-symbols-outlined" data-icon="school">school</span>
+      </div>
+      <div>
+        <h1 class="font-headline-md text-headline-md font-extrabold text-primary">Student Portal</h1>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Computer Science</p>
+      </div>
+    </div>
+    <button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-sm">
+      <span class="material-symbols-outlined" data-icon="download">download</span>
+      Download PDF
+    </button>
+  </div>
+  <!-- Main Navigation -->
+  <ul class="flex-1 px-4 space-y-1">
+    <li>
+      <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-bold border-r-4 border-primary select-none cursor-pointer" href="student.html">
+        <span class="material-symbols-outlined" data-icon="calendar_month" data-weight="fill" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+        <span>My Timetable</span>
+      </a>
+    </li>
+    <li>
+      <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 select-none cursor-pointer" href="sexam.html">
+        <span class="material-symbols-outlined" data-icon="description">description</span>
+        <span>Exams</span>
+      </a>
+    </li>
+    <li>
+      <a class="flex items-center justify-between px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 select-none cursor-pointer" href="sanoun.html">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+          <span>Announcements</span>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <!-- Footer Navigation -->
+  <ul class="px-4 pb-6 mt-auto space-y-1">
+    <li>
+      <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 select-none cursor-pointer" href="#">
+        <span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+        <span>Support</span>
+      </a>
+    </li>
+    <li>
+      <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 select-none cursor-pointer" href="#">
+        <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        <span>Settings</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 h-screen overflow-y-auto pt-16 md:pt-0 flex flex-col bg-background">
+  <div class="hidden md:flex bg-surface-container-lowest h-16 border-b border-outline-variant px-margin-desktop items-center justify-between sticky top-0 z-20 shadow-sm">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface">Week 4: Oct 14 - Oct 20</h2>
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+        <input class="pl-10 pr-4 py-2 border border-outline-variant rounded-md bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-tertiary-container focus:border-transparent font-body-sm text-body-sm w-64 placeholder:text-on-surface-variant" placeholder="Search modules..." type="text"/>
+      </div>
+      <button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors relative">
+        <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden cursor-pointer border border-outline-variant flex items-center justify-center text-on-surface-variant">
+        <span class="material-symbols-outlined text-lg" data-icon="person">person</span>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 md:p-margin-desktop max-w-container-max mx-auto w-full flex-1 flex flex-col gap-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm">
+      <div class="flex gap-2">
+        <button class="px-4 py-1.5 border border-outline-variant rounded-md font-label-md text-label-md bg-surface-container-lowest hover:bg-surface-container-high text-on-surface transition-colors flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+          Prev Week
+        </button>
+        <button class="px-4 py-1.5 border border-outline-variant rounded-md font-label-md text-label-md bg-surface-container-lowest hover:bg-surface-container-high text-on-surface transition-colors flex items-center gap-2">
+          Next Week
+          <span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+        </button>
+        <button class="px-4 py-1.5 border border-primary text-primary rounded-md font-label-md text-label-md hover:bg-primary-fixed transition-colors">
+          Today
+        </button>
+      </div>
+      <div class="flex items-center gap-4 text-body-sm font-body-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-secondary-fixed border border-on-secondary-fixed"></div>
+          <span class="text-on-surface-variant">Lecture</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-tertiary-fixed border border-on-tertiary-fixed"></div>
+          <span class="text-on-surface-variant">Laboratory</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timetable Grid -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1 flex flex-col">
+      <div class="overflow-x-auto flex-1">
+        <div class="timetable-grid min-w-[800px]">
+          <div class="timetable-header time-col border-b border-outline-variant"></div>
+          <div class="timetable-header font-label-md text-label-md text-center text-on-surface border-b border-outline-variant border-l">Monday<br/><span class="text-on-surface-variant font-normal">Oct 14</span></div>
+          <div class="timetable-header font-label-md text-label-md text-center text-on-surface border-b border-outline-variant border-l bg-surface-container-low">Tuesday<br/><span class="text-on-surface-variant font-normal">Oct 15</span></div>
+          <div class="timetable-header font-label-md text-label-md text-center text-on-surface border-b border-outline-variant border-l">Wednesday<br/><span class="text-on-surface-variant font-normal">Oct 16</span></div>
+          <div class="timetable-header font-label-md text-label-md text-center text-on-surface border-b border-outline-variant border-l">Thursday<br/><span class="text-on-surface-variant font-normal">Oct 17</span></div>
+          <div class="timetable-header font-label-md text-label-md text-center text-on-surface border-b border-outline-variant border-l">Friday<br/><span class="text-on-surface-variant font-normal">Oct 18</span></div>
+
+          <!-- 09:00 -->
+          <div class="timetable-cell time-col font-mono-sm text-mono-sm text-on-surface-variant pt-2">09:00</div>
+          <div class="timetable-cell border-l border-outline-variant"></div>
+          <div class="timetable-cell bg-surface-container-low border-l border-outline-variant"></div>
+          <div class="timetable-cell border-l border-outline-variant"></div>
+          <div class="timetable-cell border-l border-outline-variant"></div>
+          <div class="timetable-cell border-l border-outline-variant"></div>
+
+          <!-- 10:00 -->
+          <div class="timetable-cell time-col font-mono-sm text-mono-sm text-on-surface-variant pt-2 border-t border-outline-variant border-dashed">10:00</div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell bg-surface-container-low border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+
+          <!-- 11:00 -->
+          <div class="timetable-cell time-col font-mono-sm text-mono-sm text-on-surface-variant pt-2 border-t border-outline-variant border-dashed">11:00</div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell bg-surface-container-low border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+
+          <!-- 12:00 -->
+          <div class="timetable-cell time-col font-mono-sm text-mono-sm text-on-surface-variant pt-2 border-t border-outline-variant border-dashed">12:00</div>
+          <div class="timetable-cell border-t border-outline-variant border-dashed" style="grid-column: 2 / span 5;">
+            <div class="h-full w-full flex items-center justify-center opacity-40 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9InBhdHRlcm4iIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMODggTTggMEwwIDgiIHN0cm9rZT0iIzQ1NDY0ZCIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=')]">
+              <span class="bg-surface-container-lowest px-4 py-1 rounded-full font-label-md text-label-md text-on-surface-variant border border-outline-variant">Lunch Break</span>
+            </div>
+          </div>
+
+          <!-- 13:00 -->
+          <div class="timetable-cell time-col font-mono-sm text-mono-sm text-on-surface-variant pt-2 border-t border-outline-variant border-dashed">13:00</div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell bg-surface-container-low border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+          <div class="timetable-cell border-l border-t border-outline-variant border-dashed"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full py-4 mt-auto border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest text-secondary font-mono-sm text-mono-sm rounded-xl px-6 mb-4 shadow-sm">
+      <span>© 2026 Modern Institutionalism Timetabling System. All rights reserved.</span>
+      <div class="flex gap-4">
+        <a class="hover:text-primary hover:underline transition-all opacity-90 hover:opacity-100" href="#">Privacy Policy</a>
+        <a class="hover:text-primary hover:underline transition-all opacity-90 hover:opacity-100" href="#">Terms of Service</a>
+        <a class="hover:text-primary hover:underline transition-all opacity-90 hover:opacity-100" href="#">Security</a>
+      </div>
+    </footer>
+  </div>
+</main>
+</body>
+</html>
