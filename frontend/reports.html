@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<title>Chronos Academic - Reports</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&wght@100..700&display=swap" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<script>
+tailwind.config = {
+    darkMode: "class",
+
+    theme: {
+        extend: {
+
+            colors: {
+                "surface-container-lowest": "#ffffff",
+                "on-primary": "#ffffff",
+                "surface-bright": "#f7f9fb",
+                "on-secondary-container": "#57657b",
+                "surface-container-highest": "#e0e3e5",
+                "outline-variant": "#c6c6cd",
+                "surface-container-high": "#e6e8ea",
+                "primary-fixed": "#dae2fd",
+                "secondary": "#515f74",
+                "surface-container-low": "#f2f4f6",
+                "on-background": "#191c1e",
+                "primary-container": "#131b2e",
+                "primary": "#000000",
+                "secondary-container": "#d5e3fd",
+                "background": "#f7f9fb",
+                "on-surface-variant": "#5f6368",
+                "outline": "#76777d"
+            },
+
+            borderRadius: {
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+
+            spacing: {
+                "unit": "4px",
+                "margin-desktop": "32px",
+                "gutter": "24px",
+                "margin-mobile": "16px"
+            },
+
+            fontFamily: {
+                "body-md": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-md": ["Inter"],
+                "mono-sm": ["JetBrains Mono"],
+                "display": ["Inter"],
+                "label-md": ["Inter"],
+                "body-lg": ["Inter"]
+            },
+
+            fontSize: {
+                "body-md": ["14px", {
+                    lineHeight: "20px",
+                    fontWeight: "400"
+                }],
+
+                "body-sm": ["13px", {
+                    lineHeight: "18px",
+                    fontWeight: "400"
+                }],
+
+                "display": ["36px", {
+                    lineHeight: "44px",
+                    letterSpacing: "-0.02em",
+                    fontWeight: "700"
+                }],
+
+                "headline-md": ["20px", {
+                    lineHeight: "28px",
+                    fontWeight: "600"
+                }],
+
+                "label-md": ["12px", {
+                    lineHeight: "16px",
+                    letterSpacing: "0.02em",
+                    fontWeight: "600"
+                }],
+
+                "body-lg": ["16px", {
+                    lineHeight: "24px",
+                    fontWeight: "400"
+                }]
+            }
+        }
+    }
+}
+</script>
+
+
+<style>
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+</style>
+
+</head>
+
+
+<body class="bg-background text-on-background font-body-md antialiased overflow-hidden flex h-screen">
+
+
+<!-- ================= MOBILE NAV ================= -->
+
+<div class="md:hidden flex flex-col w-full fixed top-0 left-0 z-50">
+
+    <header class="bg-surface-container-lowest w-full h-16 border-b border-outline-variant flex justify-between items-center px-4">
+
+        <div class="flex items-center gap-4">
+
+            <span class="material-symbols-outlined p-2 rounded-full">
+                menu
+            </span>
+
+            <span class="font-headline-md font-bold">
+                Chronos Academic
+            </span>
+
+        </div>
+
+
+        <div class="flex items-center gap-4">
+
+            <span class="material-symbols-outlined">
+                notifications
+            </span>
+
+            <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white text-xs">
+                AD
+            </div>
+
+        </div>
+
+    </header>
+
+</div>
+
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low flex-col py-unit overflow-y-auto z-40">
+
+
+    <!-- BRAND -->
+
+    <div class="px-6 py-6 mb-4 flex items-center gap-3">
+
+        <div class="w-10 h-10 rounded bg-primary-container text-white flex items-center justify-center">
+
+            <span class="material-symbols-outlined"
+                  style="font-variation-settings: 'FILL' 1;">
+                account_balance
+            </span>
+
+        </div>
+
+
+        <div class="flex flex-col">
+
+            <span class="font-headline-md font-extrabold">
+                Admin Portal
+            </span>
+
+            <span class="font-mono-sm text-on-surface-variant">
+                Academic Year 2026-27
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN NAVIGATION -->
+
+    <div class="flex-1 px-4 space-y-1">
+
+
+        <!-- DASHBOARD -->
+
+        <a href="admin.html"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+
+            <span class="material-symbols-outlined text-lg">
+                dashboard
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+
+        <!-- SCHEDULING -->
+
+        <a href="scheduling.html"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+
+            <span class="material-symbols-outlined text-lg">
+                calendar_month
+            </span>
+
+            Scheduling
+
+        </a>
+
+
+
+        <!-- REPORTS ACTIVE -->
+
+<a href="reports.html"
+   class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold border-r-4 border-primary">
+
+    <span class="material-symbols-outlined text-lg">
+        analytics
+    </span>
+
+    Reports
+
+</a>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="px-4 py-4 space-y-1 border-t border-outline-variant mt-auto">
+
+
+        <a href="#"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+
+            <span class="material-symbols-outlined">
+                contact_support
+            </span>
+
+            Support
+
+        </a>
+
+
+        <a href="#"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+
+            <span class="material-symbols-outlined">
+                settings
+            </span>
+
+            Settings
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="flex-1 md:ml-64 h-full overflow-y-auto mt-16 md:mt-0 pt-6 md:pt-8 pb-12 px-4 md:px-8 w-full">
+
+
+<div class="max-w-[1440px] mx-auto flex flex-col gap-6">
+
+
+
+<!-- ================= HEADER ================= -->
+
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant pb-6">
+
+
+    <div>
+
+        <h1 class="font-display text-display mb-2">
+            Reports Management
+        </h1>
+
+        <p class="font-body-lg text-on-surface-variant">
+            Generate and manage academic reports and system analytics.
+        </p>
+
+    </div>
+
+
+    <button
+        class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-label-md shadow-sm hover:opacity-90 active:scale-95">
+
+        <span class="material-symbols-outlined text-base">
+            add
+        </span>
+
+        Generate Report
+
+    </button>
+
+
+</div>
+
+
+
+<!-- ================= REPORT FILTERS ================= -->
+
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+
+
+    <div class="flex items-center gap-2 mb-5">
+
+        <span class="material-symbols-outlined">
+            filter_alt
+        </span>
+
+        <h2 class="font-headline-md">
+            Report Filters
+        </h2>
+
+    </div>
+
+
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+
+        <!-- Report Type -->
+
+        <div>
+
+            <label class="block font-label-md mb-2">
+                Report Type
+            </label>
+
+            <select class="w-full border border-outline-variant rounded-lg px-4 py-3 bg-white">
+
+                <option value="" selected></option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- Department -->
+
+        <div>
+
+            <label class="block font-label-md mb-2">
+                Department
+            </label>
+
+            <select class="w-full border border-outline-variant rounded-lg px-4 py-3 bg-white">
+
+                <option value="" selected></option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- Semester -->
+
+        <div>
+
+            <label class="block font-label-md mb-2">
+                Semester
+            </label>
+
+            <select class="w-full border border-outline-variant rounded-lg px-4 py-3 bg-white">
+
+                <option value="" selected></option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- Date -->
+
+        <div>
+
+            <label class="block font-label-md mb-2">
+                Date
+            </label>
+
+            <input
+                type="date"
+                class="w-full border border-outline-variant rounded-lg px-4 py-3 bg-white"
+            />
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= REPORT AREA ================= -->
+
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+
+
+    <div class="px-6 py-5 border-b border-outline-variant bg-surface-bright flex flex-col md:flex-row md:items-center justify-between gap-3">
+
+
+        <div>
+
+            <h2 class="font-headline-md">
+                Reports
+            </h2>
+
+            <p class="text-sm text-on-surface-variant mt-1">
+                
+            </p>
+
+        </div>
+
+
+        <div class="flex items-center gap-2">
+
+
+            <button class="border border-outline-variant rounded-lg px-3 py-2 hover:bg-surface-container-high">
+
+                <span class="material-symbols-outlined text-lg">
+                    chevron_left
+                </span>
+
+            </button>
+
+
+            <button class="border border-outline-variant rounded-lg px-4 py-2 hover:bg-surface-container-high">
+
+                Today
+
+            </button>
+
+
+            <button class="border border-outline-variant rounded-lg px-3 py-2 hover:bg-surface-container-high">
+
+                <span class="material-symbols-outlined text-lg">
+                    chevron_right
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- EMPTY REPORT TABLE -->
+
+    <div class="overflow-x-auto">
+
+        <table class="w-full min-w-[900px] border-collapse">
+
+
+            <thead>
+
+                <tr class="bg-surface-container-low border-b border-outline-variant">
+
+
+                    <th class="px-4 py-4 text-left font-label-md">
+                        Report
+                    </th>
+
+
+                    <th class="px-4 py-4 text-left font-label-md">
+                        Department
+                    </th>
+
+
+                    <th class="px-4 py-4 text-left font-label-md">
+                        Date
+                    </th>
+
+
+                    <th class="px-4 py-4 text-left font-label-md">
+                        Status
+                    </th>
+
+
+                    <th class="px-4 py-4 text-left font-label-md">
+                        Action
+                    </th>
+
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+
+                <tr class="border-b border-outline-variant">
+
+                    <td class="p-6"></td>
+
+                    <td class="p-6"></td>
+
+                    <td class="p-6"></td>
+
+                    <td class="p-6"></td>
+
+                    <td class="p-6"></td>
+
+                </tr>
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= BOTTOM CARDS ================= -->
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+
+    <!-- REPORT STATUS -->
+
+    <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+
+
+        <div class="flex items-center gap-2 mb-5">
+
+            <span class="material-symbols-outlined">
+                analytics
+            </span>
+
+            <h2 class="font-headline-md">
+                Report Status
+            </h2>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+
+
+        <h2 class="font-headline-md mb-5">
+            Quick Actions
+        </h2>
+
+
+        <div class="grid grid-cols-2 gap-3">
+
+
+            <button class="border border-outline-variant rounded-lg p-4 hover:bg-surface-container-high text-left">
+
+                <span class="material-symbols-outlined mb-2">
+                    add_circle
+                </span>
+
+                <p class="font-semibold text-sm">
+                    Create Report
+                </p>
+
+            </button>
+
+
+            <button class="border border-outline-variant rounded-lg p-4 hover:bg-surface-container-high text-left">
+
+                <span class="material-symbols-outlined mb-2">
+                    description
+                </span>
+
+                <p class="font-semibold text-sm">
+                    View Reports
+                </p>
+
+            </button>
+
+
+            <button class="border border-outline-variant rounded-lg p-4 hover:bg-surface-container-high text-left">
+
+                <span class="material-symbols-outlined mb-2">
+                    bar_chart
+                </span>
+
+                <p class="font-semibold text-sm">
+                    Analytics
+                </p>
+
+            </button>
+
+
+            <button class="border border-outline-variant rounded-lg p-4 hover:bg-surface-container-high text-left">
+
+                <span class="material-symbols-outlined mb-2">
+                    download
+                </span>
+
+                <p class="font-semibold text-sm">
+                    Export Report
+                </p>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+</div>
+
+</main>
+
+</body>
+</html>
