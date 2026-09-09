@@ -114,15 +114,15 @@ tailwind.config = {
 </style>
 </head>
 
-<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<body class="bg-background text-on-background font-body-md antialiased overflow-hidden flex h-screen">
 
 <!-- Mobile Top NavBar -->
 <div class="md:hidden flex flex-col w-full fixed top-0 left-0 z-50">
-    <header class="bg-surface-container-lowest text-primary font-body-md text-body-md w-full h-16 sticky top-0 border-b border-outline-variant flex justify-between items-center px-margin-mobile z-40">
+    <header class="bg-surface-container-lowest w-full h-16 border-b border-outline-variant flex justify-between items-center px-4">
 
         <div class="flex items-center gap-4">
             <span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-high transition-colors p-2 rounded-full">menu</span>
-            <span class="font-headline-md text-headline-md font-bold text-primary">
+            <span class="font-headline-md font-bold">
                 STM
             </span>
         </div>
@@ -143,23 +143,23 @@ tailwind.config = {
 </div>
 
 <!-- SideNavBar -->
-<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low text-primary font-label-md text-label-md flex-col py-unit overflow-y-auto z-40">
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface-container-low flex-col py-unit overflow-y-auto z-40">
 
     <!-- Brand Header -->
     <div class="px-6 py-6 mb-4 flex items-center gap-3">
 
-        <div class="w-10 h-10 rounded bg-primary-container text-on-primary-container flex items-center justify-center shadow-sm">
+        <div class="w-10 h-10 rounded bg-primary-container text-white flex items-center justify-center">
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
                 account_balance
             </span>
         </div>
 
         <div class="flex flex-col">
-            <span class="font-headline-md text-headline-md font-extrabold text-primary">
+            <span class="font-headline-md font-extrabold">
                 Admin Portal
             </span>
 
-            <span class="font-mono-sm text-mono-sm text-on-surface-variant">
+            <span class="font-mono-sm text-on-surface-variant">
                 Academic Year 2026-27
             </span>
         </div>
@@ -170,7 +170,7 @@ tailwind.config = {
     <div class="flex-1 px-4 space-y-1">
 
         <!-- Dashboard -->
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold border-r-4 border-primary select-none cursor-pointer" href="#">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold border-r-4 border-primary" href="#">
 
             <span class="material-symbols-outlined text-lg">
                 dashboard
@@ -179,39 +179,37 @@ tailwind.config = {
             Dashboard
         </a>
 
-        <!-- SCHEDULING -->
+        <!-- Scheduling -->
+        <a href="scheduling.html"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
 
-<a href="scheduling.html"
-   class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+            <span class="material-symbols-outlined text-lg">
+                calendar_month
+            </span>
 
-    <span class="material-symbols-outlined text-lg">
-        calendar_month
-    </span>
+            Scheduling
 
-    Scheduling
+        </a>
 
-</a>
+        <!-- Reports -->
+        <a href="reports.html"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
 
+            <span class="material-symbols-outlined text-lg">
+                analytics
+            </span>
 
-<!-- REPORTS -->
+            Reports
 
-<a href="reports.html"
-   class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+        </a>
 
-    <span class="material-symbols-outlined text-lg">
-        analytics
-    </span>
-
-    Reports
-
-</a>
     </div>
 
     <!-- Footer Navigation -->
     <div class="px-4 py-4 space-y-1 border-t border-outline-variant mt-auto">
 
         <!-- Support -->
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-surface-container-highest transition-all duration-200 select-none cursor-pointer" href="#">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
 
             <span class="material-symbols-outlined text-lg">
                 contact_support
@@ -221,7 +219,7 @@ tailwind.config = {
         </a>
 
         <!-- Settings -->
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:bg-surface-container-highest transition-all duration-200 select-none cursor-pointer" href="#">
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
 
             <span class="material-symbols-outlined text-lg">
                 settings
@@ -234,26 +232,26 @@ tailwind.config = {
 </nav>
 
 <!-- Main Content Canvas -->
-<main class="flex-1 md:ml-64 h-full overflow-y-auto mt-16 md:mt-0 pt-margin-mobile md:pt-margin-desktop pb-12 px-margin-mobile md:px-margin-desktop w-full">
+<main class="flex-1 md:ml-64 h-full overflow-y-auto mt-16 md:mt-0 pt-6 md:pt-8 pb-12 px-4 md:px-8 w-full">
 
-    <div class="max-w-[1440px] mx-auto flex flex-col gap-gutter">
+    <div class="max-w-[1440px] mx-auto flex flex-col gap-6">
 
         <!-- Header & Actions -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant pb-6">
 
             <div>
 
-                <h1 class="font-display text-display text-on-surface mb-2">
+                <h1 class="font-display text-display mb-2">
                     Timetable Management
                 </h1>
 
-                <p class="font-body-lg text-body-lg text-on-surface-variant">
+                <p class="font-body-lg text-on-surface-variant">
                     Upload raw schedule data to begin the generation process.
                 </p>
 
             </div>
 
-            <button class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md shadow-sm hover:opacity-90 transition-opacity active:scale-95">
+            <button class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full font-label-md shadow-sm hover:opacity-90 active:scale-95">
 
                 <span class="material-symbols-outlined text-base">
                     auto_awesome
@@ -266,7 +264,7 @@ tailwind.config = {
         </div>
 
         <!-- Upload Data Section -->
-        <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm flex flex-col items-center justify-center text-center">
+        <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col items-center justify-center text-center">
 
             <div class="w-full max-w-2xl border-2 border-dashed border-outline-variant rounded-xl p-12 bg-surface hover:bg-surface-container-low transition-colors cursor-pointer group">
 
@@ -370,8 +368,6 @@ tailwind.config = {
                         </tr>
 
                     </thead>
-
-                    <!-- Generation rows removed -->
 
                     <tbody class="font-body-md text-body-md text-on-surface">
                     </tbody>
