@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>STM - Student Settings</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error": "#ba1a1a",
+            "inverse-on-surface": "#eff1f3",
+            "surface-container-high": "#e6e8ea",
+            "on-tertiary-fixed-variant": "#004395",
+            "on-secondary-fixed": "#0d1c2f",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed-dim": "#adc6ff",
+            "on-tertiary-fixed": "#001a42",
+            "on-surface": "#191c1e",
+            "tertiary-container": "#001a42",
+            "surface-container": "#eceef0",
+            "surface": "#f7f9fb",
+            "on-surface-variant": "#45464d",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#000000",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#d5e3fd",
+            "surface-container-highest": "#e0e3e5",
+            "outline": "#76777d",
+            "outline-variant": "#c6c6cd",
+            "on-secondary-container": "#57657b",
+            "on-error-container": "#93000a",
+            "surface-dim": "#d8dadc",
+            "background": "#f7f9fb",
+            "on-error": "#ffffff",
+            "secondary-fixed-dim": "#b9c7e0",
+            "inverse-primary": "#bec6e0",
+            "primary-fixed-dim": "#bec6e0",
+            "surface-tint": "#565e74",
+            "on-background": "#191c1e",
+            "on-primary-fixed": "#131b2e",
+            "on-primary-container": "#7c839b",
+            "primary-container": "#131b2e",
+            "surface-bright": "#f7f9fb",
+            "primary": "#000000",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#3980f4",
+            "surface-variant": "#e0e3e5",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#d8e2ff",
+            "secondary-container": "#d5e3fd",
+            "on-secondary-fixed-variant": "#3a485c",
+            "on-primary-fixed-variant": "#3f465c",
+            "surface-container-low": "#f2f4f6",
+            "secondary": "#515f74",
+            "inverse-surface": "#2d3133",
+            "primary-fixed": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "32px",
+            "unit": "4px",
+            "table-cell-padding": "12px 16px",
+            "container-max": "1440px"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "mono-sm": ["JetBrains Mono"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "display": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "mono-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- Left SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-dim border-r border-outline-variant flex flex-col justify-between py-unit overflow-y-auto z-50">
+<div>
+<!-- Header / Logo -->
+<div class="px-6 py-5 border-b border-outline-variant">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary leading-tight">Student Portal</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Computer Science</p>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-4 py-4">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-sm select-none cursor-pointer">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span class="">Download PDF</span>
+</button>
+</div>
+<!-- Main Navigation -->
+<nav class="px-4 space-y-1 mt-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 font-label-md text-label-md select-none cursor-pointer" href="student.html">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="">My Timetable</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 font-label-md text-label-md select-none cursor-pointer" href="sexam.html">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="">Exams</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 font-label-md text-label-md select-none cursor-pointer" href="sanoun.html">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="">Announcements</span>
+</a>
+</nav>
+</div>
+<!-- Footer Tabs with Settings Active -->
+<div class="px-4 pb-6 pt-2 border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-200 font-label-md text-label-md select-none cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold border-r-4 border-primary transition-all duration-200 font-label-md text-label-md select-none cursor-pointer" href="setting.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Shell Content Canvas (Margin offset for Fixed Nav) -->
+<div class="ml-64 flex-1 flex flex-col min-w-0">
+<!-- TopNavBar Component -->
+<header class="w-full h-16 sticky top-0 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center gap-6 flex-1 max-w-xl">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary-fixed select-none tracking-tight">
+          STM
+        </div>
+<div class="relative w-full max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-base" data-icon="search">search</span>
+<input class="w-full pl-9 pr-4 py-1.5 bg-surface-container-low border border-outline-variant rounded font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-all" placeholder="Search modules, rooms, schedules..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded cursor-pointer transition-colors active:scale-95" title="Notifications">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded cursor-pointer transition-colors active:scale-95" title="Help Documentation">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-6 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right">
+<div class="font-label-md text-label-md text-on-surface leading-tight">Student</div>
+<div class="font-mono-sm text-mono-sm text-secondary">Computer Science</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas Inner Container -->
+<main class="flex-1 px-margin-desktop py-8 max-w-container-max w-full mx-auto"><!-- Header Section -->
+<div class="max-w-2xl mx-auto mb-8">
+  <h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Settings</h1>
+  <p class="font-body-md text-body-md text-secondary mt-1">
+    Manage your student preferences and session.
+  </p>
+</div>
+
+<!-- Simplified Settings Card (3 Items) -->
+<div class="max-w-2xl mx-auto bg-surface-container-lowest border border-outline-variant rounded shadow-sm divide-y divide-outline-variant">
+  <!-- Item 1: Appearance / Dark Mode -->
+  <div class="p-6 flex items-center justify-between">
+    <div class="flex items-start gap-4">
+      <div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary mt-0.5">
+        <span class="material-symbols-outlined text-lg" data-icon="dark_mode">dark_mode</span>
+      </div>
+      <div>
+        <div class="font-headline-md text-base font-semibold text-on-surface">Dark Mode</div>
+        <p class="font-body-sm text-body-sm text-secondary mt-0.5">Toggle between light and dark visual themes.</p>
+      </div>
+    </div>
+    <label class="relative inline-flex items-center cursor-pointer ml-4 select-none">
+      <input class="sr-only peer" type="checkbox">
+      <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+    </label>
+  </div>
+
+  <!-- Item 2: Class & Timetable Alerts -->
+  <div class="p-6 flex items-center justify-between">
+    <div class="flex items-start gap-4">
+      <div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary mt-0.5">
+        <span class="material-symbols-outlined text-lg" data-icon="notifications">notifications</span>
+      </div>
+      <div>
+        <div class="font-headline-md text-base font-semibold text-on-surface">Class &amp; Timetable Alerts</div>
+        <p class="font-body-sm text-body-sm text-secondary mt-0.5">Receive notifications for lecture reschedule updates and room changes.</p>
+      </div>
+    </div>
+    <label class="relative inline-flex items-center cursor-pointer ml-4 select-none">
+      <input checked="" class="sr-only peer" type="checkbox">
+      <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+    </label>
+  </div>
+
+  <!-- Item 3: Account Session / Sign Out -->
+  <div class="p-6 flex items-center justify-between">
+    <div class="flex items-start gap-4">
+      <div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary mt-0.5">
+        <span class="material-symbols-outlined text-lg" data-icon="account_circle">account_circle</span>
+      </div>
+      <div>
+        <div class="font-headline-md text-base font-semibold text-on-surface">Account Session</div>
+        <p class="font-body-sm text-body-sm text-secondary mt-0.5">Signed in as <span class="font-medium text-on-surface">Student</span></p>
+      </div>
+    </div>
+    <a href="login.html" class="px-4 py-2 rounded border border-outline-variant bg-surface-container-low hover:bg-error-container hover:text-on-error-container hover:border-transparent text-on-surface font-label-md text-label-md transition-all flex items-center gap-2 cursor-pointer active:scale-95 ml-4 select-none">
+      <span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
+      <span>Sign Out</span>
+    </a>
+  </div>
+</div></main>
+<!-- Shared Footer Component -->
+<footer class="w-full py-4 mt-auto bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant flex justify-between items-center px-margin-desktop">
+<div class="font-mono-sm text-mono-sm text-secondary dark:text-secondary-fixed">
+        © 2026 Modern Institutionalism Timetabling System. All rights reserved.
+      </div>
+<div class="flex gap-6 font-mono-sm text-mono-sm">
+<a class="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100" href="#">Security</a>
+</div>
+</footer>
+</div>
+</body></html>
